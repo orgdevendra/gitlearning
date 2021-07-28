@@ -1,0 +1,26 @@
+git command:-
+mkdir IaC
+cd IaC
+echo "first file" > file1.txt
+eho "seond file" > file2.txt
+
+Now initialize your local git repository
+# git init
+list the modified files which are not yet committted
+# git status
+before you commit move these modified files into Staging Area
+# git add .
+commit modified files which is there in staging area, to local git repository
+# git commit -m "initial commit" (-m is passing the message)
+now check the commit reference No , and too see the HEAD position , The head position will indicate the current committed file version
+# git log
+
+How to revert back to previous version , for that note down the commit ID and pass the command
+# git chekout a50180 
+To allow other developer to work on this code (which is locally commited) , we should push these code to
+git central repository (GitHub).
+Repository:-  
+- GitHub  
+- GitHub Enterprise (Install as an server in on-premises DC)
+- Azure Repos [Azure DevOps] (Install Azure DevOps Server in on-premises DC)
+
