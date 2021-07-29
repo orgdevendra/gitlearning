@@ -3,6 +3,8 @@ mkdir IaC
 cd IaC
 echo "first file" > file1.txt
 eho "seond file" > file2.txt
+to check the contents of the file1
+# more file1.txt
 
 Now initialize your local git repository
 # git init
@@ -23,4 +25,71 @@ Repository:-
 - GitHub  
 - GitHub Enterprise (Install as an server in on-premises DC)
 - Azure Repos [Azure DevOps] (Install Azure DevOps Server in on-premises DC)
+
+Now pushing your code to GitHub repository - you need to have login credential in hand
+
+create a repostiory on github and copy the remote add origin on your local git repo
+
+git remote add origin https://github.com/orgdev/gitlearning.git
+
+push the code to remote origin i.e github repo 
+git push -u origin master
+
+------------------
+Local git hub repo still uses 'Master Branch' to store the codes , but now Centeral GITHUB repo uses 'Main Branch"
+So let's make local branch as Main branch too and then we can push the code to central git hub repo main branch
+
+
+git branch -m master main
+
+now add the remote repo in this branch too.
+ git remote add origin https://github.com/orgdev/gitlearning.git
+
+git push -u origin main.
+
+check the Head -- git log
+---------------
+creating a git branch 
+# git branch feature
+now checkout into feature branch
+# git checkout feature
+git status -- will show you which branch you have checked in
+git log - will show you head pointing current commit id which is  in the current branch
+
+Merging:---
+(a) implicit or Fast forward merge
+Here we should not have made any changes in the code in Master branch
+e.g if you have made couple of commit on your feature branch and now you decided to merge into Master branch so first ensure you do have any commit on the master branch
+(a) 1st checkout to Master branch
+(b) git merge feature
+once it is merged - the HEAD will point to -> master, feature branch
+Run command to see how the commit is made while merging process
+# git log --graph
+HEAD - will always to point to latest commit.
+
+2-- Recursive Merge-- here it will merge to feature branch along with its history means all the history of commit doone on feature branch that will also b merged in master branch
+git merge feature
+ (mearge all of the commit and history of feature branch to Master)
+Now to get the better view of merge in a graph --
+# git log --graph --decorate --oneline
+3- Squash merge--where you do not merge the history of commits.
+It will take all the commit changes and create a single commit for master branch
+git merge --sqash feature
+Some time, we may get an error of conflict. means if we have made a changes in feature file and
+the same file also exits and committed in master branch the this error will come
+so to resolve , open the file and remove the <HEAD Pointer > 
+
+-------------
+So now all we did so far is on our local repos, now let's push our code to Azure repos
+# git push origin master (insure the we have added 'remote add repos
+so it will push the code to master ,
+but now if you want your all the localy created branches should also get pushed to azure repos then
+# git push --all origin
+
+PULL Request---
+When you want to push all your code along side of feature branches
+to Master - we need to use Repo policy (azure Devops), where we will enabled aone senior developer the verify and authorised the code to be pushed to Master
+so when you do git push --all origin -- it will go to devops reepos and reate the branches like features
+but the contents will not be merged , so first you have to do the pull request and before that that has to be approved by senior devopler
+
 
